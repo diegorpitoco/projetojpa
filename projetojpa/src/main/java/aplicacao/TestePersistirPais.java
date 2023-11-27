@@ -13,8 +13,8 @@ public class TestePersistirPais {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuprojetojpa");
 		EntityManager em = emf.createEntityManager();
 		Pais p = new Pais();
-		p.setNome("Asustralia");
-		p.setIso("Aus");
+		p.setNome("Canadá");
+		p.setIso("CAN");
 		em.getTransaction().begin();	
 		em.persist(p);	
 		em.getTransaction().commit();	
