@@ -20,6 +20,7 @@ public class TesteAlterarPais {
 		em.getTransaction().commit();
 		System.out.println("Alterado com sucesso");
 		em.close();
-		emf.close();				
+		emf.close();
+		System.out.println("Conexão de banco fechada!");
 	}
 }
