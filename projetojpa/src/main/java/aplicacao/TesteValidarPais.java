@@ -18,8 +18,8 @@ public class TesteValidarPais {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuprojetojpa");
 		EntityManager em = emf.createEntityManager();
 		Pais p = new Pais();
-		p.setNome("Rio de Janeiro");
-		p.setIso("brs");
+		p.setNome("Brasil");
+		p.setIso("BRA");
 		em.getTransaction().begin();
 		Validator validador = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Pais>> erros = validador.validate(p);

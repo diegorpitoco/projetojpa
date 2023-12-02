@@ -1,16 +1,15 @@
 package aplicacao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import jpa.EntityManagerUtil;
 import model.Pais;
 
 public class TesteAlterarPais {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuprojetojpa");
-		EntityManager em = emf.createEntityManager();
+		
+		EntityManager em = EntityManagerUtil.getEntityManager();
 		
 		Pais p = em.find(Pais.class, 5);
 		p.setNome("Chileno");
@@ -20,7 +19,6 @@ public class TesteAlterarPais {
 		em.getTransaction().commit();
 		System.out.println("Alterado com sucesso");
 		em.close();
-		emf.close();
 		System.out.println("Conexão de banco fechada!");
 	}
 }
