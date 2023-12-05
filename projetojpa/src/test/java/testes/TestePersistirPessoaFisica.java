@@ -36,7 +36,7 @@ public class TestePersistirPessoaFisica {
 			pf.setEmail("diego@gmail.com");
 			pf.setNascimento(Calendar.getInstance());
 			pf.setNome("Diego Pitoco");
-			pf.setNomeUsuario("diegorpitoco");
+			pf.setNomeUsuario("diegorpitoco1");
 			pf.setRg("206995607");
 			pf.setSenha("diego123");
 			pf.setTelefone("(21) 1234-5678");
