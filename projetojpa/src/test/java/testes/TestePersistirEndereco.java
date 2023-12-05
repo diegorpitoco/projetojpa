@@ -2,6 +2,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 
 import org.junit.After;
@@ -9,11 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.Estado;
-import model.Pais;
+import model.Endereco;
+import model.PessoaFisica;
 import model.TipoEndereco;
 
-public class TestePersistirEstado {
+public class TestePersistirEndereco {
 
 	EntityManager em;
 
@@ -31,13 +33,19 @@ public class TestePersistirEstado {
 	public void test() {
 		boolean exception = false;
 		try {
-			TipoEndereco te1 = new TipoEndereco();
-			te1.setDescricao("Condominio Residencial");
-			TipoEndereco te2 = new TipoEndereco();
-			te2.setDescricao("Trabalho");
+			PessoaFisica pf = em.find(PessoaFisica.class, 1);
+			Endereco e = new Endereco();
+			e.setBairro("Campo Grande");
+			e.setCep("23013-550");
+			e.setComplemento("Condominio 504");
+			e.setEndereco("estrada do pré");
+			e.setNickname("Casa");
+			e.setNumero("lote 5");
+			e.setReferencia("Rua Miconésia");
+			e.setTipoEndereco(em.find(TipoEndereco.class, 3));
+			pf.adicionarEndereco(e);
 			em.getTransaction().begin();
-			em.persist(te1);
-			em.persist(te2);
+			em.persist(pf);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;
