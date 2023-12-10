@@ -1,6 +1,6 @@
 package testes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
@@ -9,11 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.Estado;
-import model.Pais;
-import model.TipoEndereco;
+import model.Permissao;
 
-public class TestePersistirEstado {
+public class TestePersistirPermissao {
 
 	EntityManager em;
 
@@ -31,13 +29,15 @@ public class TestePersistirEstado {
 	public void test() {
 		boolean exception = false;
 		try {
-			TipoEndereco te1 = new TipoEndereco();
-			te1.setDescricao("Condominio Residencial");
-			TipoEndereco te2 = new TipoEndereco();
-			te2.setDescricao("Trabalho");
+			Permissao p1 = new Permissao();
+			p1.setNome("Administrador");
+			p1.setDescricao("Administrador do Sistema");
+			Permissao p2 = new Permissao();
+			p2.setNome("Usuario");
+			p2.setDescricao("Usuário do sistema");		
 			em.getTransaction().begin();
-			em.persist(te1);
-			em.persist(te2);
+			em.persist(p1);
+			em.persist(p2);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;

@@ -11,11 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
+import model.Categoria;
 import model.Endereco;
+import model.Marca;
 import model.PessoaFisica;
+import model.Produto;
 import model.TipoEndereco;
 
-public class TestePersistirEndereco {
+public class TestePersistirProduto {
 
 	EntityManager em;
 
@@ -33,19 +36,21 @@ public class TestePersistirEndereco {
 	public void test() {
 		boolean exception = false;
 		try {
-			PessoaFisica pf = em.find(PessoaFisica.class, 1);
-			Endereco e = new Endereco();
-			e.setBairro("Campo Grande");
-			e.setCep("23013-550");
-			e.setComplemento("Condominio 504");
-			e.setEndereco("estrada do pré");
-			e.setNickname("Casa");
-			e.setNumero("lote 5");
-			e.setReferencia("Rua Miconésia");
-			e.setTipoEndereco(em.find(TipoEndereco.class, 1));
-			pf.adicionarEndereco(e);
+			Categoria c = new Categoria();
+			c.setNome("Eletronicos");
+			Marca m = new Marca();
+			m.setNome("TLC");
+			Produto p = new Produto();
+			p.setNome("TV TCL 50");
+			p.setCategoria(c);
+			p.setMarca(m);
+			p.setDescricao("Smart tv led full HD");
+			p.setPreco(2300.00);
+			p.setQuantidadeEstoque(20.0);
 			em.getTransaction().begin();
-			em.persist(pf);
+			em.persist(c);
+			em.persist(m);
+			em.persist(p);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;
@@ -53,5 +58,4 @@ public class TestePersistirEndereco {
 		}
 		assertEquals(false, exception);
 	}
-
 }

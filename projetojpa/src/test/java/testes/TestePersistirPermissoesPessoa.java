@@ -1,8 +1,6 @@
 package testes;
 
-import static org.junit.Assert.*;
-
-import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
@@ -11,11 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.Endereco;
+import model.Permissao;
 import model.PessoaFisica;
-import model.TipoEndereco;
 
-public class TestePersistirEndereco {
+public class TestePersistirPermissoesPessoa {
 
 	EntityManager em;
 
@@ -33,17 +30,11 @@ public class TestePersistirEndereco {
 	public void test() {
 		boolean exception = false;
 		try {
-			PessoaFisica pf = em.find(PessoaFisica.class, 1);
-			Endereco e = new Endereco();
-			e.setBairro("Campo Grande");
-			e.setCep("23013-550");
-			e.setComplemento("Condominio 504");
-			e.setEndereco("estrada do pré");
-			e.setNickname("Casa");
-			e.setNumero("lote 5");
-			e.setReferencia("Rua Miconésia");
-			e.setTipoEndereco(em.find(TipoEndereco.class, 1));
-			pf.adicionarEndereco(e);
+			PessoaFisica pf = em.find(PessoaFisica.class, 3);
+			Permissao p1 = em.find(Permissao.class, "Administrador");
+			Permissao p2 = em.find(Permissao.class, "Usuario");
+			pf.getPermissoes().add(p1);
+			pf.getPermissoes().add(p2);
 			em.getTransaction().begin();
 			em.persist(pf);
 			em.getTransaction().commit();

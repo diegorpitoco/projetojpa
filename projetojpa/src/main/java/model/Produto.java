@@ -1,17 +1,23 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +27,11 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@SequenceGenerator(name = "seq_produto", sequenceName = "seq_produto_id", allocationSize = 1)
@@ -43,10 +54,23 @@ public class Produto implements Serializable {
 	private Double quantidadeEstoque;
 
 	@NotNull(message = "A categoria deve ser informada")
-    @ManyToOne
-    @JoinColumn(name = "categoria", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey (name = "fk_categoria"))
-
+	@ManyToOne
+	@JoinColumn(name = "categoria", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey(name = "fk_categoria"))
 	private Categoria categoria;
+
+	@NotNull(message = "A marca deve ser informada")
+	@ManyToOne
+	@JoinColumn(name = "marca", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey(name = "fk_marca"))
+	private Marca marca;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "desejos",
+	joinColumns =
+	@JoinColumn( name = "produto", referencedColumnName = "id", nullable = false),
+	inverseJoinColumns =
+	@JoinColumn(name = "pessoa_fisica", referencedColumnName = "id", nullable = false),
+	uniqueConstraints = {@UniqueConstraint(columnNames = {"pessoa_fisica","produto"})})	
+	private List<PessoaFisica> desejam = new ArrayList<PessoaFisica>();
 
 	private String descricao;
 
@@ -99,6 +123,22 @@ public class Produto implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public List<PessoaFisica> getDesejam() {
+		return desejam;
+	}
+
+	public void setDesejam(List<PessoaFisica> desejam) {
+		this.desejam = desejam;
 	}
 
 	@Override
