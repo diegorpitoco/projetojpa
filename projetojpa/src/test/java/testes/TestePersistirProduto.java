@@ -1,8 +1,6 @@
 package testes;
 
-import static org.junit.Assert.*;
-
-import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
@@ -12,11 +10,8 @@ import org.junit.Test;
 
 import jpa.EntityManagerUtil;
 import model.Categoria;
-import model.Endereco;
 import model.Marca;
-import model.PessoaFisica;
 import model.Produto;
-import model.TipoEndereco;
 
 public class TestePersistirProduto {
 

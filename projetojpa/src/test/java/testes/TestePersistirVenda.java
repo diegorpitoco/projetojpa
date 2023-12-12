@@ -2,6 +2,8 @@ package testes;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 
 import org.junit.After;
@@ -9,11 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.Endereco;
 import model.PessoaFisica;
-import model.TipoEndereco;
+import model.Produto;
+import model.Venda;
+import model.VendaItens;
 
-public class TestePersistirEndereco {
+public class TestePersistirVenda {
 
 	EntityManager em;
 
@@ -31,19 +34,21 @@ public class TestePersistirEndereco {
 	public void test() {
 		boolean exception = false;
 		try {
-			PessoaFisica pf = em.find(PessoaFisica.class, 1);
-			Endereco e = new Endereco();
-			e.setBairro("Campo Grande");
-			e.setCep("23013-550");
-			e.setComplemento("Condominio 504");
-			e.setEndereco("estrada do pré");
-			e.setNickname("Casa");
-			e.setNumero("lote 5");
-			e.setReferencia("Rua Miconésia");
-			e.setTipoEndereco(em.find(TipoEndereco.class, 1));
-			pf.adicionarEndereco(e);
+			Produto p = em.find(Produto.class, 2);
+			PessoaFisica pf = em.find(PessoaFisica.class, 3);
+			Venda v = new Venda();
+			v.setData(Calendar.getInstance());
+			v.setParcelas(3);
+			v.setPessoaFisica(pf);
+			VendaItens vi = new VendaItens();
+			vi.setProduto(p);
+			vi.setQuantidade(5.0);
+			vi.setValorUnitario(p.getPreco());
+			vi.setValorTotal(vi.getQuantidade()*vi.getValorUnitario());
+			v.adicionarItem(vi);		
 			em.getTransaction().begin();
-			em.persist(pf);
+			em.persist(v);
+			em.persist(p);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;
@@ -51,5 +56,4 @@ public class TestePersistirEndereco {
 		}
 		assertEquals(false, exception);
 	}
-
 }
