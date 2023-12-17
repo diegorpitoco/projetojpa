@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class ParcelaID implements Serializable{
 
+
+	private static final long serialVersionUID = 1L;
+
 	@NotNull(message = "O número não pode ser nulo")
 	@Column(name = "numero", nullable = false)
 	private Integer numero;

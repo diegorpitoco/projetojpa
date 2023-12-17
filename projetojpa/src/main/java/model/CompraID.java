@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class CompraID implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@NotNull(message = "O número da nota deve ser informado")
 	@Column(name = "numero_note", nullable = false)
 	private Integer numeroNota;
