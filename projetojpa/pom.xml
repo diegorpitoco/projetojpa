@@ -4,7 +4,7 @@
   <artifactId>aulajpa</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <description>Iniciaso aula de java oo com banco de dados</description>
+  <description>Inicio aula de java oo com banco de dados</description>
   
   <properties>
   	<maven.compiler.soucer>11</maven.compiler.soucer>
