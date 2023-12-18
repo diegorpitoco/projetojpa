@@ -29,7 +29,7 @@ public class TestePersistirFoto {
 	public void tearDown() throws Exception {
 		em.close();
 	}
-/*
+
 	@Test
 	public void test() {
 		boolean exception = false;
@@ -51,8 +51,8 @@ public class TestePersistirFoto {
 		}
 		assertEquals(false, exception);
 	}
-}*/
-	@Test
+}
+	/*@Test
 	public void test() {
 	    boolean exception = false;
 	    try {
@@ -65,7 +65,7 @@ public class TestePersistirFoto {
 	        p.adicionarFoto(f);
 	        em.getTransaction().begin();
 	        em.persist(p);
-	        em.getTransaction().commit();
+	   	        em.getTransaction().commit();
 	    } catch (Exception e) {
 	        exception = true;
 	        e.printStackTrace();
@@ -75,4 +75,4 @@ public class TestePersistirFoto {
 	        }
 	    }
 	    assertEquals(false, exception);
-	}}
+	}}*/

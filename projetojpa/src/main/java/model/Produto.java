@@ -85,6 +85,7 @@ public class Produto implements Serializable {
 	
 	public void adicionarFoto(Foto obj) {
 		obj.setProduto(this);
+		this.fotos.add(obj);
 	}
 	
 	public void removerFoto(int index) {
