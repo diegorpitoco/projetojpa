@@ -2,8 +2,6 @@ package testes;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Calendar;
-
 import javax.persistence.EntityManager;
 
 import org.junit.After;
@@ -11,10 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.PessoaFisica;
-import model.Produto;
 import model.Venda;
-import model.VendaItens;
 
 public class TestePersistirParcela {
 
