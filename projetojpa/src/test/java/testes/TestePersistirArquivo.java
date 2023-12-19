@@ -13,10 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.Foto;
+import model.Arquivo;
 import model.Produto;
 
-public class TestePersistirFoto {
+public class TestePersistirArquivo {
 
 	EntityManager em;
 
@@ -36,16 +36,16 @@ public class TestePersistirFoto {
 		try {
 
 			Produto p = em.find(Produto.class, 2);
-			Foto f = new Foto();
-			f.setNome("smarttv50.jpg");
-			f.setDescricao("Foto do produto");
-			Path path = Paths.get("C:\\Users\\Diego Pitoco\\Pictures\\smart1.jpg");
-			f.setArquivo(Files.readAllBytes(path));
-			p.adicionarFoto(f);
+			Arquivo ar = new Arquivo();
+			ar.setNome("Cardapio Rancho");
+			ar.setDescricao("rancho da BAGL");
+			Path path = Paths.get("C:\\Users\\Diego Pitoco\\Downloads\\Ofício _ acesso ao rancho da BAGL.pdf");
+			ar.setArquivo(Files.readAllBytes(path));
+			p.adicionarArquivo(ar);
 			em.getTransaction().begin();
 			em.persist(p);
 			em.getTransaction().commit();
-			System.out.println("Foto inserida com sucesso");
+			System.out.println("Arquivo inserido com sucesso");
 		} catch (Exception e) {
 			exception = true;
 			e.printStackTrace();

@@ -45,7 +45,7 @@ public class Produto implements Serializable {
 	@NotNull(message = "O nome não pode ser nulo")
 	@Column(name = "nome", length = 50, nullable = false)
 	private String nome;
-	
+
 	@Column(name = "descricao", columnDefinition = "text")
 	private String descricao;
 
@@ -67,29 +67,37 @@ public class Produto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "marca", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey(name = "fk_marca"))
 	private Marca marca;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "desejos",
-	joinColumns =
-	@JoinColumn( name = "produto", referencedColumnName = "id", nullable = false),
-	inverseJoinColumns =
-	@JoinColumn(name = "pessoa_fisica", referencedColumnName = "id", nullable = false),
-	uniqueConstraints = {@UniqueConstraint(columnNames = {"pessoa_fisica","produto"})})	
+	@JoinTable(name = "desejos", joinColumns = @JoinColumn(name = "produto", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "pessoa_fisica", referencedColumnName = "id", nullable = false), uniqueConstraints = {
+			@UniqueConstraint(columnNames = { "pessoa_fisica", "produto" }) })
 	private List<PessoaFisica> desejam = new ArrayList<PessoaFisica>();
-	
+
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Foto> fotos = new ArrayList<Foto>();
 
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<Arquivo> arquivos = new ArrayList<Arquivo>();
+
 	public Produto() {
 	}
-	
+
 	public void adicionarFoto(Foto obj) {
 		obj.setProduto(this);
 		this.fotos.add(obj);
 	}
-	
+
 	public void removerFoto(int index) {
 		this.fotos.remove(index);
+	}
+
+	public void adicionarArquivo(Arquivo obj) {
+		obj.setProduto(this);
+		this.arquivos.add(obj);
+	}
+
+	public void excluir(int index) {
+		this.arquivos.remove(index);
 	}
 
 	public Integer getId() {
@@ -162,6 +170,14 @@ public class Produto implements Serializable {
 
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
+	}
+
+	public List<Arquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<Arquivo> arquivos) {
+		this.arquivos = arquivos;
 	}
 
 	@Override
