@@ -35,8 +35,8 @@ public class TestePersistirCompra {
 	public void test() {
 		boolean exception = false;
 		try {
-			Produto p = em.find(Produto.class, 2);
-			PessoaJuridica pj = em.find(PessoaJuridica.class, 5);
+			Produto p = em.find(Produto.class, 6);
+			PessoaJuridica pj = em.find(PessoaJuridica.class, 2);
 			Compra obj = new Compra();
 			CompraID id = new CompraID();
 			id.setPessoaJuridica(pj);

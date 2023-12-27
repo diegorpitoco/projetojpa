@@ -13,7 +13,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -68,14 +67,14 @@ public class Endereco implements Serializable {
 
 	@NotNull(message = "A pessoa deve ser informada")
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id", referencedColumnName = "id", nullable = false)
-	@ForeignKey(name = "fk_pessoa_id")
+	@JoinColumn(name = "pessoa_id", referencedColumnName = "id", nullable = false,
+	foreignKey = @javax.persistence.ForeignKey(name ="fk_pessoa_id"))
 	private Pessoa pessoa;
 
 	@NotNull(message = "O tipo de endereço deve ser informado")
 	@ManyToOne
-	@JoinColumn(name = "tipoEndereco", referencedColumnName = "id", nullable = false)
-	@ForeignKey(name = "fk_tipoEndereco_id")
+	@JoinColumn(name = "tipoEndereco", referencedColumnName = "id", nullable = false,
+	foreignKey = @javax.persistence.ForeignKey(name = "fk_tipoEndereco_id"))
 	private TipoEndereco tipoEndereco;
 
 	public Endereco() {

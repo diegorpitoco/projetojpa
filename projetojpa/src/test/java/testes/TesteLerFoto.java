@@ -33,7 +33,7 @@ public class TesteLerFoto {
 		boolean exception = false;
 		try {
 
-			Foto f = em.find(Foto.class, 3);
+			Foto f = em.find(Foto.class, 1);
 			File file = new File("C:\\Users\\Diego Pitoco\\Downloads\\testePitoco.jpg");
 			FileOutputStream out = new FileOutputStream(file);
 			out.write(f.getArquivo());

@@ -9,10 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.PessoaFisica;
-import model.Produto;
+import model.Cidade;
+import model.Estado;
 
-public class TestePersistirDesejos {
+public class TestePersistirCidade {
 
 	EntityManager em;
 
@@ -30,11 +30,11 @@ public class TestePersistirDesejos {
 	public void test() {
 		boolean exception = false;
 		try {
-			PessoaFisica pf = em.find(PessoaFisica.class, 1);
-			Produto p = em.find(Produto.class, 9);
-			pf.getDesejos().add(p);
+			Cidade c = new Cidade();
+			c.setNome("Campo Grande");
+			c.setEstado(em.find(Estado.class, 1 ));
 			em.getTransaction().begin();
-			em.persist(pf);
+			em.persist(c);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;

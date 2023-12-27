@@ -35,7 +35,7 @@ public class TestePersistirFoto {
 		boolean exception = false;
 		try {
 
-			Produto p = em.find(Produto.class, 2);
+			Produto p = em.find(Produto.class, 5);
 			Foto f = new Foto();
 			f.setNome("smarttv50.jpg");
 			f.setDescricao("Foto do produto");

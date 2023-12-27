@@ -35,7 +35,7 @@ public class TestePersistirArquivo {
 		boolean exception = false;
 		try {
 
-			Produto p = em.find(Produto.class, 2);
+			Produto p = em.find(Produto.class, 5);
 			Arquivo ar = new Arquivo();
 			ar.setNome("Cardapio Rancho");
 			ar.setDescricao("rancho da BAGL");

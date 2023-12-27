@@ -2,8 +2,6 @@ package testes;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,12 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.PessoaFisica;
 import model.Produto;
-import model.Venda;
-import model.VendaItens;
 
-public class TesteListarCidade {
+public class TesteListarProduto {
 
 	EntityManager em;
 

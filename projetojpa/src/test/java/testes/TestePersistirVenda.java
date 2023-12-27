@@ -34,8 +34,8 @@ public class TestePersistirVenda {
 	public void test() {
 		boolean exception = false;
 		try {
-			Produto p = em.find(Produto.class, 2);
-			PessoaFisica pf = em.find(PessoaFisica.class, 3);
+			Produto p = em.find(Produto.class, 8);
+			PessoaFisica pf = em.find(PessoaFisica.class, 1);
 			Venda v = new Venda();
 			v.setData(Calendar.getInstance());
 			v.setParcelas(3);

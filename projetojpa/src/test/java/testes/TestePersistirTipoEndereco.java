@@ -1,8 +1,6 @@
 package testes;
 
-import static org.junit.Assert.*;
-
-import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
@@ -11,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jpa.EntityManagerUtil;
-import model.PessoaFisica;
+import model.TipoEndereco;
 
 public class TestePersistirTipoEndereco {
 
@@ -31,17 +29,13 @@ public class TestePersistirTipoEndereco {
 	public void test() {
 		boolean exception = false;
 		try {
-			PessoaFisica pf = new PessoaFisica();
-			pf.setCpf("058.078.577-71");
-			pf.setEmail("diego@gmail.com");
-			pf.setNascimento(Calendar.getInstance());
-			pf.setNome("Diego Pitoco");
-			pf.setNomeUsuario("diegorpitoco");
-			pf.setRg("206995607");
-			pf.setSenha("diego123");
-			pf.setTelefone("(21) 1234-5678");
+			TipoEndereco te1 = new TipoEndereco();
+			te1.setDescricao("Residencial");
+			TipoEndereco te2 = new TipoEndereco();
+			te2.setDescricao("Trabalho");
 			em.getTransaction().begin();
-			em.persist(pf);
+			em.persist(te1);
+			em.persist(te2);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			exception = true;

@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import jpa.EntityManagerUtil;
 import model.Arquivo;
-import model.Foto;
 
 public class TesteLerArquivo {
 
@@ -34,7 +33,7 @@ public class TesteLerArquivo {
 		boolean exception = false;
 		try {
 
-			Arquivo ar = em.find(Arquivo.class, 5);
+			Arquivo ar = em.find(Arquivo.class, 1);
 			File file = new File("C:\\Users\\Diego Pitoco\\Downloads\\testePitocoAquivo6.pdf");
 			FileOutputStream out = new FileOutputStream(file);
 			out.write(ar.getArquivo());
